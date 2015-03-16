@@ -46,6 +46,11 @@ Plugin 'tpope/vim-leiningen'
 " Colors
 Plugin 'altercation/vim-colors-solarized'
 
+" Snippets
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -58,7 +63,7 @@ colorscheme solarized
 " ========================================================================
 " Ruby stuff
 " ========================================================================
-" syntax enable                 " Enable syntax highlighting
+syntax enable                 " Enable syntax highlighting
 
 augroup myfiletypes
   " Clear old autocmds in group
@@ -313,7 +318,7 @@ let g:rspec_command = "Dispatch bin/rspec {spec}"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-inoremap <Tab> <C-P>
+" inoremap <Tab> <C-P>
 
 " Let's be reasonable, shall we?
 nmap k gk
