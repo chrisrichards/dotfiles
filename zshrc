@@ -20,7 +20,7 @@ stty start undef
 stty stop undef
 
 # RVM 
-[[ -s "/Users/ben/.rvm/scripts/rvm" ]] && source "/Users/ben/.rvm/scripts/rvm"
+[[ -s "/Users/chrisr/.rvm/scripts/rvm" ]] && source "/Users/chrisr/.rvm/scripts/rvm"
 
 # Sourcing of other files
 source $HOME/.dotfiles/zsh/aliases
@@ -32,3 +32,5 @@ source $HOME/.dotfiles/zsh/z
 export PATH=$PATH:~/.cabal/bin
 
 export PATH=$PATH:bin:~/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.rvm/bin
+
+export CLICOLOR=1
