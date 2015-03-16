@@ -31,6 +31,8 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'wincent/Command-T'
 
+Plugin 'scrooloose/nerdtree'
+
 " nelstrom's plugin depends on kana's
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
@@ -54,7 +56,7 @@ colorscheme jellybeans
 " ========================================================================
 " Ruby stuff
 " ========================================================================
-syntax on                 " Enable syntax highlighting
+" syntax enable                 " Enable syntax highlighting
 
 augroup myfiletypes
   " Clear old autocmds in group
@@ -78,21 +80,29 @@ runtime macros/matchit.vim
 let mapleader = ","
 
 map <Leader>ac :sp app/controllers/application_controller.rb<cr>
-vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+
+nnoremap <Leader>b :CommandTBuffer<CR>
+" vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+"
 map <Leader>bb :!bundle install<cr>
 nmap <Leader>bi :source ~/.vimrc<cr>:PluginInstall<cr>
 vmap <Leader>bed "td?describe<cr>obed<tab><esc>"tpkdd/end<cr>o<esc>:nohl<cr>
-map <Leader>cc :!cucumber --drb %<CR>
+map <Leader>cc <c-_><c-_>
+" map <Leader>cc :!cucumber --drb %<CR>
 map <Leader>cu :Tabularize /\|<CR>
 map <Leader>co ggVG"*y
-map <Leader>cc :Rjcollection client/
+" map <Leader>cc :Rjcollection client/
 map <Leader>cj :Rjspec client/
 map <Leader>cm :Rjmodel client/
 map <Leader>cs :call SearchForCallSitesCursor()<CR>
 map <Leader>ct :Rtemplate client/
 map <Leader>cv :Rjview client/
 map <Leader>cn :e ~/Dropbox/notes/coding-notes.txt<cr>
-map <Leader>d orequire 'pry'<cr>binding.pry<esc>:w<cr>
+
+nmap <leader>d :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.o$', '\.d$']
+" map <Leader>d orequire 'pry'<cr>binding.pry<esc>:w<cr>
+
 map <Leader>dr :e ~/Dropbox<cr>
 map <Leader>dj :e ~/Dropbox/notes/debugging_journal.txt<cr>
 map <Leader>ec :e ~/code/
@@ -104,7 +114,7 @@ map <Leader>fa :sp test/factories.rb<CR>
 map <Leader>h :CommandT<CR>
 map <Leader>i mmgg=G`m<CR>
 map <Leader>l oconsole.log 'debugging'<esc>:w<cr>
-map <Leader>m :Rmodel
+map <Leader>m :Emodel
 map <Leader>nn :sp ~/Dropbox/notes/programming_notes.txt<cr>
 map <Leader>nt :e! ~/Dropbox/docs/trailmix/todo.md<cr>
 map <Leader>o :w<cr>:call RunNearestSpec()<CR>
@@ -147,8 +157,7 @@ map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
 map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 
-map <C-h> :nohl<cr>
-imap <C-l> :<Space>
+nnoremap <leader><space> :noh<cr>
 " Note that remapping C-s requires flow control to be disabled
 " (e.g. in .bashrc or .zshrc)
 map <C-s> <esc>:w<CR>
@@ -157,6 +166,22 @@ map <C-t> <esc>:tabnew<CR>
 map <C-x> <C-w>c
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+map <leader>fg :CommandTFlush<cr>\|:CommandT spec/factories<cr>
+map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
+map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
+map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
+
+" Switch buffer with ,,
+map <leader>, :b#<CR>
 
 " Emacs-like beginning and end of line.
 imap <c-e> <c-o>$
@@ -185,7 +210,8 @@ set laststatus=2  " Always show status line.
 set relativenumber
 set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
 set autoindent " always set autoindenting on
-set bg=light
+set bg=dark
+set hidden
 
 " Set the tag file search order
 set tags=./tags;
@@ -376,3 +402,4 @@ if has("autocmd")
   augroup END
 
 endif " has("autocmd")
+
