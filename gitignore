@@ -1,7 +1,10 @@
 .DS_Store
 .svn
 *~
+gemtags
+.gemtags
 tags
+.tags
 log/
 db/*.sqlite3
 .netrwhist
