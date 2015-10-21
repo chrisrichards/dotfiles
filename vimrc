@@ -111,6 +111,7 @@ let NERDTreeIgnore = ['\.o$', '\.d$']
 " map <Leader>d orequire 'pry'<cr>binding.pry<esc>:w<cr>
 
 map <Leader>dr :e ~/Dropbox<cr>
+map <Leader>dn :e ~/Dropbox/notes<cr>
 map <Leader>dj :e ~/Dropbox/notes/debugging_journal.txt<cr>
 map <Leader>ec :e ~/code/
 map <Leader>gs :Gstatus<cr>
@@ -120,11 +121,10 @@ map <Leader>fix :cnoremap % %<CR>
 map <Leader>fa :sp test/factories.rb<CR>
 map <Leader>h :CommandT<CR>
 map <Leader>i mmgg=G`m<CR>
-map <Leader>l oconsole.log 'debugging'<esc>:w<cr>
+map <Leader>lc oconsole.log 'debugging'<esc>:w<cr>
 map <Leader>m :Emodel
 map <Leader>nn :sp ~/Dropbox/notes/programming_notes.txt<cr>
 map <Leader>nt :e! ~/Dropbox/docs/trailmix/todo.md<cr>
-map <Leader>o :w<cr>:call RunNearestSpec()<CR>
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 map <Leader>pn :sp ~/Dropbox/work/thoughtbot/notes/project-notes.txt<cr>
 map <Leader>ra :%s/
@@ -145,7 +145,6 @@ map <Leader>ss ds)i <esc>:w<cr>
 map <Leader>st :!ruby -Itest % -n "//"<left><left>
 map <Leader>su :RSunittest
 map <Leader>sv :RSview
-map <Leader>t :w<cr>:call RunCurrentSpecFile()<CR>
 map <Leader>y :!rspec --drb %<cr>
 map <Leader>u :Runittest<cr>
 map <Leader>vc :RVcontroller<cr>
@@ -158,10 +157,16 @@ map <Leader>vv :RVview<cr>
 map <Leader>w <C-w>w
 map <Leader>x :exec getline(".")<cr>
 
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
 " Edit another file in the same directory as the current file
 " uses expression to extract path from current file's path
 map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
-map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+" map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 
 nnoremap <leader><space> :noh<cr>
@@ -179,7 +184,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-map <leader>fg :CommandTFlush<cr>\|:CommandT spec/factories<cr>
+map <leader>gf :CommandTFlush<cr>\|:CommandT spec/factories<cr>
 map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
 map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
 map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>

@@ -37,3 +37,6 @@ export PATH=$PATH:~/.cabal/bin
 export PATH=$PATH:bin:~/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.rvm/bin
 
 export CLICOLOR=1
+
+# NVM
+source $(brew --prefix nvm)/nvm.sh
