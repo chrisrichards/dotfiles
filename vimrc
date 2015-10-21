@@ -386,6 +386,14 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " Wrap the quickfix window
 autocmd FileType qf setlocal wrap linebreak
 
+" Requires 'jq' (brew install jq)
+function! PrettyJSON()
+  %!jq .
+  set filetype=json
+endfunction
+command! PrettyJSON :call PrettyJSON()
+map <Leader>jq :call PrettyJSON()<cr>
+
 " ========================================================================
 " End of things set by me.
 " ========================================================================
